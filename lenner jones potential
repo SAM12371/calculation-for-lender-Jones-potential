@@ -1,0 +1,28 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def lennard_jones_potential(epsilon, sigma, r):
+    """Calculate the Lennard-Jones potential."""
+    return 4 * epsilon * ((sigma / r)**12 - (sigma / r)**6)
+
+# Input parameters
+epsilon = float(input("Enter the value of epsilon (depth of the potential well): "))
+sigma = float(input("Enter the value of sigma (distance at which potential is zero): "))
+
+# Define range of r values
+r = np.linspace(0.9 * sigma, 3 * sigma, 500)
+
+# Calculate potential
+lj_potential = lennard_jones_potential(epsilon, sigma, r)
+
+# Plot Lennard-Jones potential
+plt.figure(figsize=(8, 6))
+plt.plot(r, lj_potential, label=f"LJ Potential (epsilon={epsilon}, sigma={sigma})", color="b")
+plt.axhline(0, color="k", linestyle="--", linewidth=0.8)
+plt.axvline(sigma, color="r", linestyle="--", linewidth=0.8, label=f"r = sigma")
+plt.title("Lennard-Jones Potential")
+plt.xlabel("Distance r")
+plt.ylabel("Potential Energy")
+plt.legend()
+plt.grid()
+plt.show()
